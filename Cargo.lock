@@ -381,7 +381,7 @@ dependencies = [
 
 [[package]]
 name = "dprint-plugin-cedar"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "cedar-policy-formatter",
  "dprint-core",

@@ -1,0 +1,10 @@
+~~ lineWidth: 40 ~~
+== should use the line width ==
+permit(principal == User::"alice", action == Action::"view", resource);
+
+[expect]
+permit (
+  principal == User::"alice",
+  action == Action::"view",
+  resource
+);

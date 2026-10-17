@@ -1,0 +1,43 @@
+== should format a policy ==
+permit(principal == User::"alice", action == Action::"view", resource in Album::"jane_vacation") when { resource.owner == principal && context.authenticated == true };
+
+[expect]
+permit (
+  principal == User::"alice",
+  action == Action::"view",
+  resource in Album::"jane_vacation"
+)
+when { resource.owner == principal && context.authenticated == true };
+
+== should format multiple policies with annotations and comments ==
+// allow viewing
+@id("view")
+permit(principal,action==Action::"view",resource)   // trailing
+when{principal.department=="engineering"}
+unless {resource.private};
+forbid(principal in Group::"banned",action,resource);
+// end of file comment
+
+[expect]
+// allow viewing
+@id("view")
+permit (
+  principal,
+  action == Action::"view",
+  resource
+) // trailing
+when { principal.department == "engineering" }
+unless { resource.private };
+
+forbid (
+  principal in Group::"banned",
+  action,
+  resource
+);
+// end of file comment
+
+== should keep an already formatted policy ==
+permit (principal, action, resource);
+
+[expect]
+permit (principal, action, resource);

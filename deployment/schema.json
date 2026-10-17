@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://plugins.dprint.dev/dprint/dprint-plugin-cedar/0.0.0/schema.json",
+  "type": "object",
+  "properties": {
+    "lineWidth": {
+      "description": "The width of a line the formatter will try to stay under. Note that this limit will be exceeded in some cases.",
+      "default": 80,
+      "type": "number"
+    },
+    "indentWidth": {
+      "description": "The number of spaces for an indent.",
+      "default": 2,
+      "type": "number"
+    },
+    "newLineKind": {
+      "description": "The kind of newline to use.",
+      "type": "string",
+      "default": "lf",
+      "oneOf": [{
+        "const": "auto",
+        "description": "For each file, uses the newline kind found at the end of the last line."
+      }, {
+        "const": "crlf",
+        "description": "Uses carriage return, line feed."
+      }, {
+        "const": "lf",
+        "description": "Uses line feed."
+      }, {
+        "const": "system",
+        "description": "Uses the system standard (ex. crlf on Windows)."
+      }]
+    }
+  }
+}

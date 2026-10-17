@@ -1,0 +1,30 @@
+{
+  "name": "@dprint/cedar",
+  "version": "0.0.0",
+  "description": "Wasm buffer for dprint-plugin-cedar.",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dprint/dprint-plugin-cedar.git"
+  },
+  "keywords": [
+    "cedar",
+    "code",
+    "formatter",
+    "dprint",
+    "policy"
+  ],
+  "author": "David Sherret",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dprint/dprint-plugin-cedar/issues"
+  },
+  "homepage": "https://github.com/dprint/dprint-plugin-cedar#readme",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "devDependencies": {
+    "@dprint/formatter": "~0.4.0"
+  }
+}

@@ -1,0 +1,11 @@
+~~ indentWidth: 4 ~~
+== should use the indent width ==
+permit(principal == User::"alice", action == Action::"view", resource in Album::"jane_vacation") when { resource.owner == principal && context.authenticated == true };
+
+[expect]
+permit (
+    principal == User::"alice",
+    action == Action::"view",
+    resource in Album::"jane_vacation"
+)
+when { resource.owner == principal && context.authenticated == true };

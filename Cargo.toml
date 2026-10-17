@@ -1,13 +1,13 @@
 [package]
 name = "dprint-plugin-cedar"
 version = "0.1.0"
-authors = ["Troy Benson <troy@scuffle.cloud>"]
+authors = ["Troy Benson <troy@scuffle.cloud>", "David Sherret <dsherret@gmail.com>"]
 edition = "2024"
-homepage = "https://github.com/scufflecloud/dprint-plugin-cedar"
+homepage = "https://github.com/dprint/dprint-plugin-cedar"
 keywords = ["formatting", "formatter", "cedar"]
 license = "MIT"
-repository = "https://github.com/scufflecloud/dprint-plugin-cedar"
-description = "Cedar formatter for dprint."
+repository = "https://github.com/dprint/dprint-plugin-cedar"
+description = "Cedar formatter for dprint via cedar-policy-formatter."
 
 [lib]
 crate-type = ["lib", "cdylib"]
@@ -20,9 +20,17 @@ debug-assertions = false
 overflow-checks = false
 panic = "abort"
 
+[features]
+wasm = ["serde_json", "dprint-core/wasm"]
+
 [dependencies]
-anyhow = "1"
 cedar-policy-formatter = "4.14.0"
-dprint-core = { version = "0.67", features = ["wasm"] }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+dprint-core = { version = "0.71.0", default-features = false }
+miette = "7.6.0"
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { version = "1.0", optional = true }
+thiserror = "2"
+
+[dev-dependencies]
+dprint-development = "0.12.1"
+serde_json = { version = "1.0" }

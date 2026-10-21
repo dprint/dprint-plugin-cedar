@@ -12,7 +12,8 @@ import { createFromBuffer } from "@dprint/formatter";
 
 const formatter = createFromBuffer(getBuffer());
 
-console.log(
-  formatter.formatText("policy.cedar", "permit(principal,action,resource);"),
-);
+console.log(formatter.formatText({
+  filePath: "policy.cedar",
+  fileText: "permit(principal,action,resource);",
+}));
 ```

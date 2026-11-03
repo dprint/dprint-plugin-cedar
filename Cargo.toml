@@ -24,7 +24,7 @@ panic = "abort"
 wasm = ["serde_json", "dprint-core/wasm"]
 
 [dependencies]
-cedar-policy-formatter = "4.14.0"
+cedar-policy-formatter = "4.14.1"
 dprint-core = { version = "0.75.0", default-features = false }
 miette = "7.6.0"
 serde = { version = "1.0.210", features = ["derive"] }

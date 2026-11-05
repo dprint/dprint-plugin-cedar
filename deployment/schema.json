@@ -2,16 +2,38 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://plugins.dprint.dev/dprint/dprint-plugin-cedar/0.0.0/schema.json",
   "type": "object",
+  "x-playground": {
+    "input": [
+      "// anyone in the editors group can view and edit documents in their workspace",
+      "@id(\"editors-can-edit\")",
+      "permit(principal in Group::\"editors\",action in [Action::\"view\",Action::\"edit\"],resource)",
+      "when { resource.workspace == principal.workspace && resource has owner };",
+      "",
+      "permit (",
+      "    principal,",
+      "  action == Action::\"view\",",
+      "      resource",
+      ")",
+      "when {resource.isPublic};",
+      "",
+      "// nobody can delete an archived document unless they own it and it was archived over 30 days ago",
+      "forbid(principal, action == Action::\"delete\", resource)",
+      "when { resource.archived } unless { resource.owner == principal && context.daysSinceArchived > 30 };"
+    ]
+  },
   "properties": {
     "lineWidth": {
       "description": "The width of a line the formatter will try to stay under. Note that this limit will be exceeded in some cases.",
       "default": 80,
-      "type": "number"
+      "type": "integer",
+      "minimum": 1
     },
     "indentWidth": {
       "description": "The number of spaces for an indent.",
       "default": 2,
-      "type": "number"
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 255
     },
     "newLineKind": {
       "description": "The kind of newline to use.",
